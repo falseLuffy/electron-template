@@ -929,6 +929,8 @@
         position: relative;
         width: 100%;
         height: 100%;
+        min-width: 1920px;
+        min-height: 1080px;
         background: url('./asserts/bg-2.png') no-repeat;
         background-size: cover;
         padding: 0 32px 0 32px;

@@ -115,7 +115,7 @@
                                   stroke-opacity="0.7" stroke="#51A3FF" stroke-width="2" fill-opacity="0.5"
                                   fill="url(#linearGradient-4)"></path>
                             <foreignObject x="23" y="0" width="190" height="23">
-                                <select name="" id="" v-model="option" @change="handleChange">
+                                <select name="" id="" class="select" v-model="option" @change="handleChange">
                                     <option value="state_property_protection" label="资源保护领域（不涉及污染）"></option>
                                     <option value="ecosystem" label="生态环境领域"></option>
                                     <option value="state_land_rights" label="城镇国有土地使用权出让领域"></option>
@@ -171,15 +171,17 @@
             color: #3ee9f8;
         }
 
-        select {
+        .select {
             background: transparent;
             border: none;
             width: calc(100% - 20px);
             margin: 0 10px;
             outline: none;
-
+            color: #3ee9f8;
             option {
                 background: #0a122a;
+                color: #fff;
+
             }
         }
     }

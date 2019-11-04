@@ -46,7 +46,7 @@
 
 <style scoped lang="scss">
     .c-progress {
-        padding: 16px 0;
+        padding: 16px 0 16px 10px;
         display: flex;
         color: #95e1ff;
         font-size: 16px;
@@ -54,6 +54,7 @@
         align-items: center;
         background-color: rgba(14, 44, 98, 0.9);
         border-radius: 8px;
+
 
         .text {
             flex: 0 0 100px;
