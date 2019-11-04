@@ -1,4 +1,4 @@
-# gas-monitor
+# electron-template
 
 > An electron-vue project
 

@@ -1,5 +1,5 @@
 {
-  "name": "gas-monitor",
+  "name": "electron-template",
   "version": "0.0.1",
   "author": "falseLuffy <falseLuffy@qq.com>",
   "description": "An electron-vue project",
@@ -19,7 +19,7 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "gas-monitor",
+    "productName": "electron-template",
     "appId": "com.example.yourapp",
     "directories": {
       "output": "build"

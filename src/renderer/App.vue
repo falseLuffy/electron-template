@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'gas-monitor',
+    name: 'electron-template',
     data () {
       return {
         data: 'hello world'
