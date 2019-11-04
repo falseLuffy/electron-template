@@ -135,6 +135,7 @@ let rendererConfig = {
             options: options
           },
           process,
+          require
         };
       },
       minify: {

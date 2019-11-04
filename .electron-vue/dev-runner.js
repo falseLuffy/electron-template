@@ -48,12 +48,12 @@ function startRenderer () {
       heartbeat: 2500
     })
 
-    compiler.hooks.compilation.tap('compilation', compilation => {
+    /*compiler.hooks.compilation.tap('compilation', compilation => {
       compilation.hooks.htmlWebpackPluginAfterEmit.tapAsync('html-webpack-plugin-after-emit', (data, cb) => {
         hotMiddleware.publish({ action: 'reload' })
         cb()
       })
-    })
+    })*/
 
     compiler.hooks.done.tap('done', stats => {
       logStats('Renderer', stats)
@@ -127,7 +127,7 @@ function startElectron () {
   }
 
   electronProcess = spawn(electron, args)
-  
+
   electronProcess.stdout.on('data', data => {
     electronLog(data, 'blue')
   })
