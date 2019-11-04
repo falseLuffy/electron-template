@@ -36,7 +36,7 @@ function createWindow () {
   })
 }
 
-app.commandLine.appendSwitch('ignore-certificate-errors');
+app.commandLine.appendSwitch('ignore-certificate-errors')
 
 app.on('ready', createWindow)
 

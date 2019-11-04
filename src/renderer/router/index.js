@@ -15,7 +15,7 @@ export default new Router({
     },
     {
       path: '/dataVisual',
-      name: 'landing-page',
+      name: 'dataVisual',
       component: BI
     },
     {
