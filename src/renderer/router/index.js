@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import BI from '../pages/BI/main'
+import Login from '../pages/login'
+
 Vue.use(Router)
 
 export default new Router({
@@ -8,7 +11,12 @@ export default new Router({
     {
       path: '/',
       name: 'landing-page',
-      component: require('@/pages/BI/main.vue').default
+      component: Login
+    },
+    {
+      path: '/dataVisual',
+      name: 'landing-page',
+      component: BI
     },
     {
       path: '*',

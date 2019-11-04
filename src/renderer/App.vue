@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    {{data}}
     <router-view></router-view>
   </div>
 </template>
@@ -18,4 +17,8 @@
 
 <style>
   /* CSS */
+  html,body{
+    margin: 0;
+    padding: 0;
+  }
 </style>
