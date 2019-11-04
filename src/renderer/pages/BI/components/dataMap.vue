@@ -1,39 +1,40 @@
 <template>
- <div class="map-container" ref="chartContainer">
-   <div class="dataMap" ref="dataMap"></div>
- </div>
+    <div class="map-container" ref="chartContainer">
+        <div class="dataMap" ref="dataMap"></div>
+    </div>
 </template>
 
 <script>
   import echarts from 'echarts'
-  import 'echarts-gl'
+  // import 'echarts-gl'
+
   export default {
     name: 'dataMap',
     props: {
       mapJson: {},
       activeRegions: Array
     },
-    mounted() {
+    mounted () {
       this.init()
     },
     methods: {
-      init() {
+      init () {
         this.initDom()
         this.initChart()
         window.addEventListener('resize', this.resizeChart)
       },
-      initDom() {
+      initDom () {
         this.$refs.dataMap.style.width = this.$refs.chartContainer.clientWidth + 'px'
         this.$refs.dataMap.style.height = this.$refs.chartContainer.clientHeight + 'px'
       },
-      resizeChart() {
+      resizeChart () {
         clearTimeout(this.timer)
         this.timer = setTimeout(() => {
           this.initDom()
           this.chart.resize()
         }, 50)
       },
-      initChart() {
+      initChart () {
         echarts.registerMap('anhui', this.mapJson)
         this.chart = echarts.init(this.$refs.dataMap)
         const options = {
@@ -147,13 +148,13 @@
           }
         })
       },
-      setActiveRegion(region) {
+      setActiveRegion (region) {
         this.chart.dispatchAction({
           type: 'mapSelect',
           name: region
         })
       },
-      clearRegionSelect(region) {
+      clearRegionSelect (region) {
         this.chart.dispatchAction({
           type: 'geoUnSelect',
           name: region
@@ -161,7 +162,7 @@
       }
     },
     watch: {
-      activeRegions(Regions, old) {
+      activeRegions (Regions, old) {
         if (Regions !== old) {
           old.forEach((region) => {
             this.clearRegionSelect(region)
@@ -172,15 +173,15 @@
         }
       }
     },
-    destroyed() {
+    destroyed () {
       window.removeEventListener('resize', this.resizeChart)
     }
   }
 </script>
 
 <style scoped lang="scss">
-  .map-container{
-    width: 100%;
-    height: 100%;
-  }
+    .map-container {
+        width: 100%;
+        height: 100%;
+    }
 </style>

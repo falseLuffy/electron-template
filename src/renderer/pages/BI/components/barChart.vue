@@ -1,7 +1,7 @@
 <template>
-  <div class="barchart-wrap" ref="chartWrap">
-    <div class="barChart" ref="barChart"></div>
-  </div>
+    <div class="barchart-wrap" ref="chartWrap">
+        <div class="barChart" ref="barChart"></div>
+    </div>
 </template>
 
 <script>
@@ -12,25 +12,25 @@
     props: {
       data: {
         type: Array,
-        default() {
+        default () {
           return []
         }
       }
     },
-    mounted() {
+    mounted () {
       this.init()
     },
     methods: {
-      init() {
+      init () {
         this.initDom()
         this.initChart()
         window.addEventListener('resize', this.resizeChart)
       },
-      initDom() {
+      initDom () {
         this.$refs.barChart.style.width = this.$refs.chartWrap.clientWidth + 'px'
         this.$refs.barChart.style.height = this.$refs.chartWrap.clientHeight + 'px'
       },
-      initChart() {
+      initChart () {
         this.chart = echarts.init(this.$refs.barChart)
         const data = this.data
         const symbolSize = [50, 12]
@@ -86,7 +86,7 @@
                 color: '#aaa'
               },
               tooltip: {
-                formatter: function({ name, value }) {
+                formatter: function ({name, value}) {
                   return `${name.split('\n').join('')}: ${value * 2}件`
                 }
               }
@@ -214,25 +214,25 @@
         }
         this.chart.setOption(option)
       },
-      resizeChart() {
+      resizeChart () {
         this.initDom()
         this.chart.resize()
       }
     },
     watch: {
-      data() {
+      data () {
         this.initChart()
       }
     },
-    destroyed() {
+    destroyed () {
       window.removeEventListener('resize', this.resizeChart)
     }
   }
 </script>
 
 <style scoped>
-  .barchart-wrap {
-    width: 100%;
-    height: 100%;
-  }
+    .barchart-wrap {
+        width: 100%;
+        height: 100%;
+    }
 </style>

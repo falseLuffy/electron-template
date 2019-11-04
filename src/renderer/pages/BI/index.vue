@@ -163,7 +163,7 @@
 
   export default {
     name: 'index',
-    data() {
+    data () {
       return {
         mapJson: anhui,
         activeRegions: [''],
@@ -218,17 +218,17 @@
         }
       }
     },
-    created() {
+    created () {
       this.getAreaCode()
       this.load()
     },
-    mounted() {
+    mounted () {
       this.containerJustify()
       window.addEventListener('resize', this.containerJustify)
       document.body.style.overflow = 'hidden'
     },
     methods: {
-      load() {
+      load () {
         this.getLaysuitType()
         this.getRegion()
         this.getSuitFieldDistribute()
@@ -238,22 +238,22 @@
         this.getSuitFieldDeal()
         this.getNotice()
       },
-      handleAreaChange() {
+      handleAreaChange () {
         this.load()
       },
-      handleMapChange(city) {
+      handleMapChange (city) {
         city = this.areaCode.filter((area) => {
           return area.name === city
         })[0]
         this.currentArea = city.code
         this.load()
       },
-      containerJustify() {
+      containerJustify () {
         this.$refs.dataContainer.style.height = document.documentElement.clientHeight + 'px'
         this.$refs.dataContainer.style.width = document.documentElement.clientWidth + 'px'
       },
       // 诉讼类型分布
-      getLaysuitType() {
+      getLaysuitType () {
         this.suitType.loading = true
         this.fd.req({
           method: 'get',
@@ -294,7 +294,7 @@
           })
       },
       // 区域分布
-      getRegion() {
+      getRegion () {
         this.regionTop.loading = true
         this.fd.req({
           method: 'get',
@@ -315,7 +315,7 @@
           })
       },
       // 领域分布
-      getSuitFieldDistribute() {
+      getSuitFieldDistribute () {
         this.suitFieldDistribute.loading = true
         this.fd.req({
           method: 'get',
@@ -341,7 +341,7 @@
           })
       },
       // 行政公益诉讼诉前程序
-      getPreSuitList() {
+      getPreSuitList () {
         this.preSuitList.loading = true
         this.fd.req({
           method: 'get',
@@ -362,7 +362,7 @@
           })
       },
       // 检查建议接受单位
-      getSuitSuggestion() {
+      getSuitSuggestion () {
         this.suitSuggestion.loading = true
         this.fd.req({
           method: 'get',
@@ -383,7 +383,7 @@
           })
       },
       // 法院审结情况
-      getCourtTrial() {
+      getCourtTrial () {
         this.courtTrial.loading = true
         this.fd.req({
           method: 'get',
@@ -409,7 +409,7 @@
           })
       },
       // 办案成效
-      getSuitFieldDeal() {
+      getSuitFieldDeal () {
         this.suitFieldDeal.loading = true
         this.fd.req({
           method: 'get',
@@ -444,7 +444,7 @@
           })
       },
       //  已发出公告和检查建议
-      getNotice() {
+      getNotice () {
         this.fd.req({
           method: 'get',
           url: 'cap/api/suit/getSuitCount',
@@ -464,7 +464,7 @@
           })
       },
       //  获取区域编码
-      getAreaCode() {
+      getAreaCode () {
         this.fd.req({
           url: 'uaa/api/groups/user',
           method: 'GET',
@@ -485,7 +485,7 @@
       }
     },
     filters: {
-      overflow(data, max = 999999) {
+      overflow (data, max = 999999) {
         return data > max ? max + '+' : data
       }
     },
@@ -501,7 +501,7 @@
       BarChart,
       Tabs
     },
-    destroyed() {
+    destroyed () {
       window.removeEventListener('resize', this.containerJustify)
       document.body.style.overflow = ''
     }

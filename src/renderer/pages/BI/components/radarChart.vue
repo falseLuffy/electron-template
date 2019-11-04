@@ -1,39 +1,40 @@
 <template>
-  <div class="radar" ref="radarContainer">
-    <div class="radarChart" ref="radarChart"></div>
-  </div>
+    <div class="radar" ref="radarContainer">
+        <div class="radarChart" ref="radarChart"></div>
+    </div>
 </template>
 
 <script>
   import echarts from 'echarts'
+
   export default {
     name: 'radarChart',
     props: {
       data: {
         type: Array,
-        default() {
+        default () {
           return [
             {}, {}
           ]
         }
       }
     },
-    created() {
+    created () {
 
     },
-    mounted() {
+    mounted () {
       this.init()
     },
     methods: {
-      init() {
+      init () {
         this.initDom()
         this.initChart()
       },
-      initDom() {
+      initDom () {
         this.$refs.radarChart.style.width = this.$refs.radarContainer.clientWidth + 'px'
         this.$refs.radarChart.style.height = this.$refs.radarContainer.clientHeight + 'px'
       },
-      initChart() {
+      initChart () {
         this.chart = echarts.init(this.$refs.radarChart)
         const indicator = []
         const data = []
@@ -88,7 +89,7 @@
       }
     },
     watch: {
-      data() {
+      data () {
         this.chart.dispose()
         this.initChart()
       }
@@ -97,8 +98,8 @@
 </script>
 
 <style scoped>
-  .radar{
-    width: 100%;
-    height: 100%;
-  }
+    .radar {
+        width: 100%;
+        height: 100%;
+    }
 </style>

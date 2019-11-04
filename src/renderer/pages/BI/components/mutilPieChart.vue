@@ -1,65 +1,66 @@
 <template>
     <div class="multi-pieChart" ref="multiPieChart">
-      <div class="tooltip-wrap">
-        <div class="tip tr" v-if="data[0].value">
-          <div>判决驳回</div>
-          <div>{{data[0].value || 0}} 件 {{data[0].rate || '0%'}}</div>
+        <div class="tooltip-wrap">
+            <div class="tip tr" v-if="data[0].value">
+                <div>判决驳回</div>
+                <div>{{data[0].value || 0}} 件 {{data[0].rate || '0%'}}</div>
+            </div>
+            <div class="tip br" v-if="data[1].value">
+                <div>判决驳回起诉</div>
+                <div>{{data[1].value || 0}} 件 {{data[1].rate || '0%'}}</div>
+            </div>
+            <div class="tip bl" v-if="data[2].value">
+                <div>裁定不予受理</div>
+                <div>{{data[2].value || 0}} 件 {{data[2].rate || '0%'}}</div>
+            </div>
+            <div class="tip lt" v-if="data[3].value">
+                <div>判决支持</div>
+                <div>{{data[3].value || 0}} 件 {{data[3].rate || '0%'}}</div>
+            </div>
         </div>
-        <div class="tip br" v-if="data[1].value">
-          <div>判决驳回起诉</div>
-          <div>{{data[1].value || 0}} 件 {{data[1].rate || '0%'}}</div>
-        </div>
-        <div class="tip bl" v-if="data[2].value">
-          <div>裁定不予受理</div>
-          <div>{{data[2].value || 0}} 件 {{data[2].rate || '0%'}}</div>
-        </div>
-        <div class="tip lt" v-if="data[3].value">
-          <div>判决支持</div>
-          <div>{{data[3].value || 0}} 件 {{data[3].rate || '0%'}}</div>
-        </div>
-      </div>
-      <div class="pie" ref="pie"></div>
+        <div class="pie" ref="pie"></div>
     </div>
 </template>
 
 <script>
   import echarts from 'echarts'
+
   export default {
     name: 'pieChart',
     props: {
       title: String,
       gradual: {
         type: Array,
-        default() {
+        default () {
           return ['red', 'blue']
         }
       },
       data: {
         type: Array,
-        default() {
+        default () {
           return [
             {}, {}, {}, {}
           ]
         }
       }
     },
-    created() {
+    created () {
 
     },
-    mounted() {
+    mounted () {
       this.init()
     },
     methods: {
-      init() {
+      init () {
         this.initDom()
         this.initChart()
         window.addEventListener('resize', this.resizeChart)
       },
-      initDom() {
+      initDom () {
         this.$refs.pie.style.width = this.$refs.multiPieChart.clientWidth + 'px'
         this.$refs.pie.style.height = this.$refs.multiPieChart.clientHeight + 'px'
       },
-      initChart() {
+      initChart () {
         this.chart = echarts.init(this.$refs.pie)
         const options = {
           title: {
@@ -171,68 +172,73 @@
 
         this.chart.setOption(options)
       },
-      resizeChart() {
+      resizeChart () {
         this.initDom()
         this.chart.resize()
       }
     },
     watch: {
-      data() {
+      data () {
         this.chart.dispose()
         this.initChart()
       }
     },
-    destroyed() {
+    destroyed () {
       window.removeEventListener('resize', this.resizeChart)
     }
   }
 </script>
 
 <style scoped lang="scss">
-  .multi-pieChart{
-    width: 100%;
-    height: 100%;
-    position: relative;
-    .tip{
-      position: absolute;
-      padding: 2px 3px;
-      width: 130px;
-      height: 54px;
-      line-height: 25px;
-      border-style: solid;
-      border-width: 1px;
-      text-align: right;
-      z-index: 10;
-      font-size: 18px;
-      font-weight: normal;
-      font-stretch: normal;
-      letter-spacing: 0;
-      box-sizing: border-box;
-      border-radius: 2px;
-      &.tr{
-        top: 30px;
-        right: 79px;
-        border-color: #25e3ce;
-        background: rgba(37, 227, 206, 0.5)
-      }
-      &.br{
-        bottom: 30px;
-        right: 79px;
-        border-color: #f1ed98;
-        background: rgba(241, 237, 152, 0.5)
-      }
-      &.bl{
-        bottom: 30px;
-        left: 79px;
-        border-color: #9477e0;
-        background: rgba(148, 119, 224, 0.5)
-      }
-      &.lt{
-        top: 30px;
-        left: 79px;
-        border-color: #1054e3;
-        background: rgba(16, 84, 227, 0.5)
-      }
+    .multi-pieChart {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        .tip {
+            position: absolute;
+            padding: 2px 3px;
+            width: 130px;
+            height: 54px;
+            line-height: 25px;
+            border-style: solid;
+            border-width: 1px;
+            text-align: right;
+            z-index: 10;
+            font-size: 18px;
+            font-weight: normal;
+            font-stretch: normal;
+            letter-spacing: 0;
+            box-sizing: border-box;
+            border-radius: 2px;
+
+            &.tr {
+                top: 30px;
+                right: 79px;
+                border-color: #25e3ce;
+                background: rgba(37, 227, 206, 0.5)
+            }
+
+            &.br {
+                bottom: 30px;
+                right: 79px;
+                border-color: #f1ed98;
+                background: rgba(241, 237, 152, 0.5)
+            }
+
+            &.bl {
+                bottom: 30px;
+                left: 79px;
+                border-color: #9477e0;
+                background: rgba(148, 119, 224, 0.5)
+            }
+
+            &.lt {
+                top: 30px;
+                left: 79px;
+                border-color: #1054e3;
+                background: rgba(16, 84, 227, 0.5)
+            }
+        }
     }
-  }
 </style>

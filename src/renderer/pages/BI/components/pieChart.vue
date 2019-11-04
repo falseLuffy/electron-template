@@ -1,23 +1,24 @@
 <template>
-  <div class="chart-container" ref="pieContainer">
-    <div class="pie" ref="pie"></div>
-  </div>
+    <div class="chart-container" ref="pieContainer">
+        <div class="pie" ref="pie"></div>
+    </div>
 </template>
 
 <script>
   import echarts from 'echarts'
+
   export default {
     name: 'pieChart',
     props: {
       gradual: {
         type: Array,
-        default() {
+        default () {
           return ['red', 'blue']
         }
       },
       data: {
         type: Object,
-        default() {
+        default () {
           return {
             rate: '0%',
             value: 0
@@ -25,27 +26,27 @@
         }
       }
     },
-    created() {
+    created () {
 
     },
-    mounted() {
+    mounted () {
       this.init()
     },
     methods: {
-      init() {
+      init () {
         this.initDom()
         this.initChart()
         window.addEventListener('resize', this.resizeChart)
       },
-      initDom() {
+      initDom () {
         this.$refs.pie.style.width = this.$refs.pieContainer.clientWidth + 'px'
         this.$refs.pie.style.height = this.$refs.pieContainer.clientHeight + 'px'
       },
-      initChart() {
+      initChart () {
         this.chart = echarts.init(this.$refs.pie)
         this.loadingChart(this.data)
       },
-      loadingChart(data) {
+      loadingChart (data) {
         const options = {
           title: {
             show: true,
@@ -107,7 +108,7 @@
             },
             {
               type: 'pie',
-              radius: ['98%', '100%'],
+              radius: ['97%', '99%'],
               avoidLabelOverlap: false,
               hoverOffset: 0,
               label: {
@@ -134,13 +135,13 @@
         }
         this.chart.setOption(options)
       },
-      resizeChart() {
+      resizeChart () {
         this.initDom()
         this.chart.resize()
       }
     },
     watch: {
-      data() {
+      data () {
         this.loadingChart({
           rate: '0%',
           value: 0
@@ -148,15 +149,15 @@
         this.loadingChart(this.data)
       }
     },
-    destroyed() {
+    destroyed () {
       window.removeEventListener('resize', this.resizeChart)
     }
   }
 </script>
 
 <style scoped>
-  .chart-container{
-    width: 100%;
-    height: 100%;
-  }
+    .chart-container {
+        width: 100%;
+        height: 100%;
+    }
 </style>
