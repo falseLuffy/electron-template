@@ -2,6 +2,8 @@
 
 import { app, BrowserWindow, Menu, Tray } from 'electron'
 import path from 'path'
+// 隐藏菜单
+Menu.setApplicationMenu(null)
 
 /**
  * Set `__static` path to static files in production
@@ -25,16 +27,18 @@ function createWindow () {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    height: 1080,
+    height: 1200,
     width: 1920,
     useContentSize: true,
-    resizable: true,
+    resizable: true, // 用户可缩放窗口大小
     webPreferences: {
       webSecurity: false,
       nodeIntegration: true
-    }
+    },
+    frame: false // 去除边框及标题栏
   })
 
+  // 工具托盘的菜单
   let trayMenuTemplate = [
     {
       label: '设置',

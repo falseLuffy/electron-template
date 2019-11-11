@@ -74,6 +74,10 @@
       if (rememberFlag && rememberFlag === 'true') {
         this.isRemember = true
       }
+      this.$confirm('全屏', '提示')
+        .then(() => {
+          this.fullScreen()
+        })
     },
     methods: {
       rememberChange (val) {
@@ -137,12 +141,23 @@
             console.log('error submit!!')
           }
         })
+      },
+      fullScreen () {
+        const el = document.documentElement
+        const rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen
+        if (typeof rfs !== 'undefined' && rfs) {
+          rfs.call(el)
+        }
       }
     }
   }
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
+  body{
+    padding: 0;
+    margin: 0;
+  }
   .login-container {
     position: relative;
     width: 100%;

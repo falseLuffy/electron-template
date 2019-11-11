@@ -9,12 +9,12 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/landing-page',
       name: 'landing-page',
       component: Login
     },
     {
-      path: '/dataVisual',
+      path: '/',
       name: 'dataVisual',
       component: BI
     },
